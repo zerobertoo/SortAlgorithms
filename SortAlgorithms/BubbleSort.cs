@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 
 namespace SortAlgorithms;
 
@@ -33,6 +31,7 @@ public class BubbleSort
 
             sortingComplete = true;
             loadingThread.Join();
+            Console.Clear();
 
             if (showArrays == "S")
             {

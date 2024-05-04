@@ -3,7 +3,7 @@
 while (true)
 {
     Console.Clear();
-    Console.WriteLine("Qual algoritmo você deseja utilizar? (Até o momento, só tem o Bubble Sort 'BS')");
+    Console.WriteLine("Qual algoritmo você deseja utilizar? (Bubble Sort = 'BS')");
     string algorithm = Console.ReadLine().ToUpper();
 
     switch (algorithm)
@@ -18,6 +18,7 @@ while (true)
                 Console.WriteLine($"Ocorreu um erro ao executar o Bubble Sort: {ex.Message}");
             }
             break;
+
         default:
             Console.WriteLine("Algoritmo não reconhecido. Por favor, escolha novamente.");
             break;
