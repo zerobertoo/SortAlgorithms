@@ -105,7 +105,7 @@ public class BubbleSort
 
     private static void ShowLoading()
     {
-        string[] loadingSymbols = { "|", "/", "-", "\\" };
+        string[] loadingSymbols = ["|", "/", "-", "\\"];
         int index = 0;
         while (!sortingComplete)
         {
