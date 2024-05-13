@@ -4,13 +4,12 @@ namespace SortAlgorithms;
 
 public class BubbleSort
 {
-    private static bool sortingComplete = false;
     public static void Main()
     {
         string repeat = "S";
         while (repeat == "S")
         {
-            int[] array = GenerateArray();
+            int[] array = Parameters();
             int[] originalArray = array.ToArray(); // Cria uma cópia do array original
             string showArrays;
 
@@ -19,9 +18,6 @@ public class BubbleSort
             Console.Clear();
 
             Console.WriteLine("Ordenando...");
-            sortingComplete = false;
-            Thread loadingThread = new(() => ShowLoading());
-            loadingThread.Start();
 
             // Inicia o temporizador
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -29,8 +25,6 @@ public class BubbleSort
             stopwatch.Stop();
             // Para o temporizador
 
-            sortingComplete = true;
-            loadingThread.Join();
             Console.Clear();
 
             if (showArrays == "S")
@@ -48,7 +42,7 @@ public class BubbleSort
         }
     }
 
-    private static int[] GenerateArray()
+    private static int[] Parameters()
     {
         Console.Clear();
         Console.WriteLine("\nQual vai ser o tamanho do array?");
@@ -56,7 +50,7 @@ public class BubbleSort
         {
             Console.WriteLine("Tamanho inválido. Pressione qualquer tecla para continuar.");
             Console.ReadKey();
-            return GenerateArray();
+            return Parameters();
         }
 
         Console.WriteLine("\nQual será o valor inicial? (O padrão é 0 ou 1)");
@@ -64,7 +58,7 @@ public class BubbleSort
         {
             Console.WriteLine("Valor inválido. Pressione qualquer tecla para continuar.");
             Console.ReadKey();
-            return GenerateArray();
+            return Parameters();
         }
 
         Console.WriteLine("\nComo será a geração dos números? (C = Crescente; D = Decrescente; A = Aleatório)");
@@ -73,46 +67,10 @@ public class BubbleSort
         {
             Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar.");
             Console.ReadKey();
-            return GenerateArray();
+            return Parameters();
         }
 
-        return GenerateArray(option, arraySize, firstNum);
-    }
-
-    private static int[] GenerateArray(string option, int size, int firstNum)
-    {
-        switch (option)
-        {
-            case "C":
-                return Enumerable.Range(firstNum, size).ToArray();
-
-            case "D":
-                int[] descendingArray = Enumerable.Range(firstNum, size).ToArray();
-                for (int i = 0; i < size / 2; i++)
-                {
-                    (descendingArray[size - i - 1], descendingArray[i]) = (descendingArray[i], descendingArray[size - i - 1]);
-                }
-                return descendingArray;
-
-            case "A":
-                Random rnd = new Random();
-                return Enumerable.Range(firstNum, size).OrderBy(x => rnd.Next()).ToArray();
-
-            default:
-                throw new ArgumentException("Opção inválida", nameof(option));
-        }
-    }
-
-    private static void ShowLoading()
-    {
-        string[] loadingSymbols = ["|", "/", "-", "\\"];
-        int index = 0;
-        while (!sortingComplete)
-        {
-            Console.Write($"\r{loadingSymbols[index]}");
-            index = (index + 1) % loadingSymbols.Length;
-            Thread.Sleep(100); // Aguarda 100ms antes de exibir o próximo símbolo
-        }
+        return GenerateArrays.GenerateArray(option, arraySize, firstNum);
     }
 
     private static void SortArray(int[] array)

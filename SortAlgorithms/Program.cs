@@ -1,4 +1,5 @@
-﻿using SortAlgorithms;
+﻿
+using SortAlgorithms;
 
 while (true)
 {
