@@ -3,7 +3,7 @@
 while (true)
 {
     Console.Clear();
-    Console.WriteLine("Qual algoritmo você deseja utilizar? (Bubble Sort = 'BS')");
+    Console.WriteLine("Qual algoritmo você deseja utilizar? (Bubble Sort = 'BS'; Selection Sort = 'SS')");
     string algorithm = Console.ReadLine().ToUpper();
 
     switch (algorithm)
