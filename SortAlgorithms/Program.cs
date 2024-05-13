@@ -1,5 +1,4 @@
-﻿
-using SortAlgorithms;
+﻿using SortAlgorithms;
 
 while (true)
 {
@@ -17,6 +16,17 @@ while (true)
             catch (Exception ex)
             {
                 Console.WriteLine($"Ocorreu um erro ao executar o Bubble Sort: {ex.Message}");
+            }
+            break;
+
+        case "SS":
+            try
+            {
+                SelectionSort.Main();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocorreu um erro ao executar o Selection Sort: {ex.Message}");
             }
             break;
 

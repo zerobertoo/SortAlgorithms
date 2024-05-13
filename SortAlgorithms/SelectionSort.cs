@@ -2,7 +2,7 @@
 
 namespace SortAlgorithms;
 
-public class BubbleSort
+public class SelectionSort
 {
     public static void Main()
     {
@@ -42,18 +42,24 @@ public class BubbleSort
         }
     }
 
-    private static void SortArray(int[] array)
-    {
+    private static void SortArray(int[] array) {
         int n = array.Length;
+
+        // Percorre o array
         for (int i = 0; i < n - 1; i++)
         {
-            for (int j = 0; j < n - i - 1; j++)
+            // Encontra o índice do menor elemento no array não ordenado
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++)
             {
-                if (array[j] > array[j + 1])
+                if (array[j] < array[minIndex])
                 {
-                    (array[j + 1], array[j]) = (array[j], array[j + 1]);
+                    minIndex = j;
                 }
             }
+
+            // Troca o menor elemento encontrado com o primeiro elemento não ordenado
+            (array[i], array[minIndex]) = (array[minIndex], array[i]);
         }
     }
 }
