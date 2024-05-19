@@ -1,8 +1,9 @@
-﻿using System.Diagnostics;
+﻿using SortAlgorithms.Utils;
+using System.Diagnostics;
 
-namespace SortAlgorithms;
+namespace SortAlgorithms.Algorithms;
 
-public class SelectionSort
+public class BubbleSort
 {
     public static void Main()
     {
@@ -30,10 +31,10 @@ public class SelectionSort
             if (showArrays == "S")
             {
                 Console.WriteLine("\nArray antes da ordenação:");
-                Console.WriteLine(string.Join(" | ", originalArray));
+                PrintArray.Main(originalArray);
 
                 Console.WriteLine("\nArray depois da ordenação:");
-                Console.WriteLine(string.Join(" | ", array));
+                PrintArray.Main(array);
             }
             Console.WriteLine($"\nTempo de execução: {stopwatch.ElapsedMilliseconds}ms");
 
@@ -42,24 +43,18 @@ public class SelectionSort
         }
     }
 
-    private static void SortArray(int[] array) {
+    private static void SortArray(int[] array)
+    {
         int n = array.Length;
-
-        // Percorre o array
         for (int i = 0; i < n - 1; i++)
         {
-            // Encontra o índice do menor elemento no array não ordenado
-            int minIndex = i;
-            for (int j = i + 1; j < n; j++)
+            for (int j = 0; j < n - i - 1; j++)
             {
-                if (array[j] < array[minIndex])
+                if (array[j] > array[j + 1])
                 {
-                    minIndex = j;
+                    (array[j + 1], array[j]) = (array[j], array[j + 1]);
                 }
             }
-
-            // Troca o menor elemento encontrado com o primeiro elemento não ordenado
-            (array[i], array[minIndex]) = (array[minIndex], array[i]);
         }
     }
 }

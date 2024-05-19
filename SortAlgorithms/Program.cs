@@ -1,41 +1,41 @@
-﻿using SortAlgorithms;
+﻿using SortAlgorithms.Algorithms;
 
 while (true)
 {
     Console.Clear();
-    Console.WriteLine("Qual algoritmo você deseja utilizar? (Bubble Sort = 'BS'; Selection Sort = 'SS')");
+    Console.WriteLine("Qual algoritmo você deseja utilizar?");
+    Console.WriteLine("  Bubble Sort = 'BS'");
+    Console.WriteLine("  Selection Sort = 'SS'");
+    Console.WriteLine("  Shell Sort = 'SH'");
+    Console.WriteLine("  Quick Sort = 'QS'");
+    Console.Write("Opção: ");
     string algorithm = Console.ReadLine().ToUpper();
 
-    switch (algorithm)
+    Action sortAction = algorithm switch
     {
-        case "BS":
-            try
-            {
-                BubbleSort.Main();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ocorreu um erro ao executar o Bubble Sort: {ex.Message}");
-            }
-            break;
-
-        case "SS":
-            try
-            {
-                SelectionSort.Main();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ocorreu um erro ao executar o Selection Sort: {ex.Message}");
-            }
-            break;
-
-        default:
+        "BS" => BubbleSort.Main,
+        "SS" => SelectionSort.Main,
+        "SH" => ShellSort.Main,
+        "QS" => QuickSort.Main,
+        _ =>
+        () =>
+        {
             Console.WriteLine("Algoritmo não reconhecido. Por favor, escolha novamente.");
-            break;
+            Console.ReadLine();
+        }
+    };
+
+    Console.WriteLine("\nExecutando o algoritmo...");
+    try
+    {
+        sortAction();
+        Console.WriteLine("\nAlgoritmo executado com sucesso.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ocorreu um erro ao executar o algoritmo: {ex.Message}");
     }
 
-    Console.Clear();
     Console.WriteLine("\nDeseja utilizar outro algoritmo? (Sim = S; Não = N)");
     string bypass = Console.ReadLine().ToUpper();
     if (bypass != "S")

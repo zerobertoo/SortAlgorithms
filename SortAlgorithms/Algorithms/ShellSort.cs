@@ -1,8 +1,9 @@
-﻿using System.Diagnostics;
+﻿using SortAlgorithms.Utils;
+using System.Diagnostics;
 
-namespace SortAlgorithms;
+namespace SortAlgorithms.Algorithms;
 
-public class BubbleSort
+public class ShellSort
 {
     public static void Main()
     {
@@ -30,10 +31,10 @@ public class BubbleSort
             if (showArrays == "S")
             {
                 Console.WriteLine("\nArray antes da ordenação:");
-                Console.WriteLine(string.Join(" | ", originalArray));
+                PrintArray.Main(originalArray);
 
                 Console.WriteLine("\nArray depois da ordenação:");
-                Console.WriteLine(string.Join(" | ", array));
+                PrintArray.Main(array);
             }
             Console.WriteLine($"\nTempo de execução: {stopwatch.ElapsedMilliseconds}ms");
 
@@ -45,14 +46,20 @@ public class BubbleSort
     private static void SortArray(int[] array)
     {
         int n = array.Length;
-        for (int i = 0; i < n - 1; i++)
+
+        // Começa com um grande gap, depois reduz o gap
+        for (int gap = n / 2; gap > 0; gap /= 2)
         {
-            for (int j = 0; j < n - i - 1; j++)
+            // Realiza a ordenação com gap
+            for (int i = gap; i < n; i++)
             {
-                if (array[j] > array[j + 1])
+                int temp = array[i];
+                int j;
+                for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
                 {
-                    (array[j + 1], array[j]) = (array[j], array[j + 1]);
+                    array[j] = array[j - gap];
                 }
+                array[j] = temp;
             }
         }
     }

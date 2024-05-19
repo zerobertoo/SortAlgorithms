@@ -1,15 +1,15 @@
-﻿namespace SortAlgorithms;
+﻿namespace SortAlgorithms.Utils;
 
 public class GenerateArrays
 {
-    public static int[] GenerateArray(string option, int size, int firstNum)
+    public static int[] GenerateArray(char option, int size, int firstNum)
     {
         switch (option)
         {
-            case "C":
+            case 'C':
                 return Enumerable.Range(firstNum, size).ToArray();
 
-            case "D":
+            case 'D':
                 int[] descendingArray = Enumerable.Range(firstNum, size).ToArray();
                 for (int i = 0; i < size / 2; i++)
                 {
@@ -17,7 +17,7 @@ public class GenerateArrays
                 }
                 return descendingArray;
 
-            case "A":
+            case 'A':
                 Random rnd = new();
                 return Enumerable.Range(firstNum, size).OrderBy(x => rnd.Next()).ToArray();
 
