@@ -6,7 +6,8 @@ while (true)
     Console.WriteLine("Qual algoritmo você deseja utilizar?");
     Console.WriteLine("  Bubble Sort = 'BS'");
     Console.WriteLine("  Selection Sort = 'SS'");
-    Console.WriteLine("  Shell Sort = 'SH'");
+    Console.WriteLine("  Insert Sort = 'SH'");
+    Console.WriteLine("  Merge Sort = 'MS'");
     Console.WriteLine("  Quick Sort = 'QS'");
     Console.Write("Opção: ");
     string algorithm = Console.ReadLine().ToUpper();
@@ -15,7 +16,8 @@ while (true)
     {
         "BS" => BubbleSort.Main,
         "SS" => SelectionSort.Main,
-        "SH" => ShellSort.Main,
+        "IS" => InsertSort.Main,
+        "MS" => MergeSort.Main,
         "QS" => QuickSort.Main,
         _ =>
         () =>

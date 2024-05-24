@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace SortAlgorithms.Algorithms;
 
-public class ShellSort
+public class MergeSort
 {
     public static void Main()
     {
@@ -46,21 +46,19 @@ public class ShellSort
     private static void SortArray(int[] array)
     {
         int n = array.Length;
-
-        // Começa com um grande gap, depois reduz o gap
-        for (int gap = n / 2; gap > 0; gap /= 2)
+        for (int i = 1; i < n; ++i)
         {
-            // Realiza a ordenação com gap
-            for (int i = gap; i < n; i++)
+            int key = array[i];
+            int j = i - 1;
+
+            // Move os elementos do array[0..i-1], que são maiores que a chave,
+            // para uma posição à frente de sua posição atual
+            while (j >= 0 && array[j] > key)
             {
-                int temp = array[i];
-                int j;
-                for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
-                {
-                    array[j] = array[j - gap];
-                }
-                array[j] = temp;
+                array[j + 1] = array[j];
+                j = j - 1;
             }
+            array[j + 1] = key;
         }
     }
 }
